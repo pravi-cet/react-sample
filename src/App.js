@@ -1,0 +1,36 @@
+import React, { Component } from 'react';
+import './App.css';
+import Person  from './Person/Person';
+
+class App extends Component {
+state = {
+persons : [
+  {name:"A", age:21},
+  {name:"B", age:20},
+  {name:"C", age:19}
+]
+};
+switchNameHandler = () => {
+  this.setState(
+    {
+      persons : [{name:"Anu", age:21},
+      {name:"Boogy", age:20},
+      {name:"C", age:19}]
+
+    }
+  );
+}
+  render() {
+    return (
+      <div className="App">
+      <h1>This is a react app</h1>
+      <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+      <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
+      <button onClick={this.switchNameHandler}>Swich Name</button>
+      <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+      </div>
+    );
+  }
+}
+
+export default App;
