@@ -45,20 +45,23 @@ changeNameHandler = (event) => {
       border: '1px solid blue',
       padding: '8px',
       cursor: 'pointer'
+    };
+
+    let persons = null;
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.changeNameHandler}/>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click={this.switchNameHandler.bind(this, "PName")}/>
+        </div>
+      )
     }
     return (
       <div className="App">
       <h1>This is a react app</h1>
-      <button style={style} onClick={this.showPersonsHandler}>Swich Name</button>
-      {
-        this.state.showPersons ?
-      <div>
-      <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-      <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.changeNameHandler}/>
-      <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click={this.switchNameHandler.bind(this, "PName")}/>
-      </div>
-      : null
-    }
+      <button style={style} onClick={this.showPersonsHandler}>Toggle Name</button>
+      {persons}
       </div>
 
     );
