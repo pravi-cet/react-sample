@@ -8,7 +8,8 @@ persons : [
   {name:"A", age:21},
   {name:"B", age:20},
   {name:"C", age:19}
-]
+],
+showPersons: false
 };
 switchNameHandler = (newName) => {
   this.setState(
@@ -19,6 +20,12 @@ switchNameHandler = (newName) => {
 
     }
   );
+}
+
+//Toggle the show/hide for persons
+showPersonsHandler = () => {
+  const currState = this.state.showPersons;
+  this.setState({showPersons: !currState});
 }
 
 changeNameHandler = (event) => {
@@ -42,11 +49,18 @@ changeNameHandler = (event) => {
     return (
       <div className="App">
       <h1>This is a react app</h1>
+      <button style={style} onClick={this.showPersonsHandler}>Swich Name</button>
+      {
+        this.state.showPersons ?
+      <div>
       <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
       <Person name={this.state.persons[1].name} age={this.state.persons[1].age} changed={this.changeNameHandler}/>
       <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click={this.switchNameHandler.bind(this, "PName")}/>
-      <button style={style} onClick={() => this.switchNameHandler('NameAsParam')}>Swich Name</button>
       </div>
+      : null
+    }
+      </div>
+
     );
   }
 }
