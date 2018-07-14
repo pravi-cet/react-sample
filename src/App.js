@@ -10,10 +10,10 @@ persons : [
   {name:"C", age:19}
 ]
 };
-switchNameHandler = () => {
+switchNameHandler = (newName) => {
   this.setState(
     {
-      persons : [{name:"Anu", age:21},
+      persons : [{name:newName, age:21},
       {name:"Boogy", age:20},
       {name:"C", age:19}]
 
@@ -26,8 +26,8 @@ switchNameHandler = () => {
       <h1>This is a react app</h1>
       <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
       <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
-      <button onClick={this.switchNameHandler}>Swich Name</button>
-      <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click={this.switchNameHandler}/>
+      <button onClick={this.switchNameHandler.bind(this, "BName")}>Swich Name</button>
+      <Person name={this.state.persons[2].name} age={this.state.persons[2].age} click={this.switchNameHandler.bind(this, "PName")}/>
       </div>
     );
   }
