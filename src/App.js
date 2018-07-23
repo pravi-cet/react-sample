@@ -5,9 +5,9 @@ import Person  from './Person/Person';
 class App extends Component {
 state = {
 persons : [
-  {name:"A", age:21},
-  {name:"B", age:20},
-  {name:"C", age:19}
+  {id: "abcd1", name:"A", age:21},
+  {id: "abcd2", name:"B", age:20},
+  {id: "abcd3", name:"C", age:19}
 ],
 showPersons: false
 };
@@ -28,15 +28,23 @@ showPersonsHandler = () => {
   this.setState({showPersons: !currState});
 }
 
-changeNameHandler = (event) => {
-  this.setState(
-    {
-      persons : [{name:"ABC", age:21},
-      {name:event.target.value, age:20},
-      {name:"C", age:19}]
+changeNameHandler = (event, id) => {
+// find the index where id matches
+  const currPersonIndex = this.state.persons.findIndex(p => {
+    return p.id === id;
+  })
 
-    }
-  );
+  // copy this person object to a local variable
+  const currPerson = [
+    ...this.state.persons[currPersonIndex]
+  ];
+
+  // copy the text from textbox
+  currPerson.name = event.target.value;
+  // clone the state object before changing and change it
+  const personsCopy = [...this.state.persons];
+  personsCopy[currPersonIndex] = currPerson;
+  this.setState({persons: personsCopy});
 }
 
 deletePersonHandler = (personIndex) => {
@@ -60,7 +68,12 @@ deletePersonHandler = (personIndex) => {
       persons = (
         <div>
         {this.state.persons.map((person, index) => {
-          return <Person name={person.name} age={person.age} click={() => this.deletePersonHandler(index)}/>
+          return <Person
+          key={person.id}
+          name={person.name}
+          age={person.age}
+          click={() => this.deletePersonHandler(index)}
+          changeHappened={(event) => {this.changeNameHandler(event, person.id)}}/>
         })}
         </div>
       )
