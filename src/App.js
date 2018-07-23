@@ -56,7 +56,8 @@ deletePersonHandler = (personIndex) => {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'red',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -76,7 +77,8 @@ deletePersonHandler = (personIndex) => {
           changeHappened={(event) => {this.changeNameHandler(event, person.id)}}/>
         })}
         </div>
-      )
+      );
+      style.backgroundColor = 'green';
     }
     return (
       <div className="App">
