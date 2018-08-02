@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classpack from './App.css';
 import Person  from './Person/Person';
 
 class App extends Component {
@@ -41,6 +41,7 @@ changeNameHandler = (event, id) => {
 
   // copy the text from textbox
   currPerson.name = event.target.value;
+  currPerson.age = this.state.persons[currPersonIndex].age;
   // clone the state object before changing and change it
   const personsCopy = [...this.state.persons];
   personsCopy[currPersonIndex] = currPerson;
@@ -55,16 +56,8 @@ deletePersonHandler = (personIndex) => {
 }
 
   render() {
-    const style = {
-      backgroundColor: 'red',
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
-
     let persons = null;
+    let btnClass = '';
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -78,12 +71,12 @@ deletePersonHandler = (personIndex) => {
         })}
         </div>
       );
-      style.backgroundColor = 'green';
+      btnClass = classpack.Red;
   }
     return (
-      <div className="App">
+      <div className={classpack.App}>
       <h1>This is a react app</h1>
-      <button style={style} onClick={this.showPersonsHandler}>Toggle Name</button>
+      <button className={btnClass} onClick={this.showPersonsHandler}>Toggle Name</button>
       {persons}
       </div>
 
