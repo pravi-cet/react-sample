@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import cssClasses from './App.css';
 import Person  from './Person/Person';
 
 class App extends Component {
@@ -81,7 +81,7 @@ deletePersonHandler = (personIndex) => {
       style.backgroundColor = 'green';
   }
     return (
-      <div className="App">
+      <div className={cssClasses.App}>
       <h1>This is a react app</h1>
       <button style={style} onClick={this.showPersonsHandler}>Toggle Name</button>
       {persons}
