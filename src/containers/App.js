@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import classpack from './App.css';
-import Person  from './Person/Person';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary'
+import Persons  from '../components/Persons/Persons';
+import Cockpit  from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 state = {
@@ -58,25 +58,18 @@ deletePersonHandler = (personIndex) => {
 
   render() {
     let persons = null;
-    let btnClass = '';
+
     if (this.state.showPersons) {
       persons = (
-        <div>
-        {this.state.persons.map((person, index) => {
-          return <ErrorBoundary key={person.id}> <Person
-          name={person.name}
-          age={person.age}
-          click={() => this.deletePersonHandler(index)}
-          changeHappened={(event) => {this.changeNameHandler(event, person.id)}}/> </ErrorBoundary>
-        })}
-        </div>
+        <Persons persons={this.state.persons}
+        clicked={this.deletePersonHandler}
+        changed={this.changeNameHandler}/>
       );
-      btnClass = classpack.Red;
+
   }
     return (
       <div className={classpack.App}>
-      <h1>This is a react app</h1>
-      <button className={btnClass} onClick={this.showPersonsHandler}>Toggle Name</button>
+      <Cockpit showPersons={this.showPersonsHandler} persons={this.state.persons} />
       {persons}
       </div>
 
