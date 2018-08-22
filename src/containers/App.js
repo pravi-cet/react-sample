@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD:src/containers/App.js
 import classpack from './App.css';
 import Persons  from '../components/Persons/Persons';
 import Cockpit  from '../components/Cockpit/Cockpit';
+=======
+import cssClasses from './App.css';
+import Person  from './Person/Person';
+>>>>>>> 68a0f93658f0fd1b86a54b22ae71d827408a11f5:src/App.js
 
 class App extends Component {
 state = {
@@ -68,8 +73,14 @@ deletePersonHandler = (personIndex) => {
 
   }
     return (
+<<<<<<< HEAD:src/containers/App.js
       <div className={classpack.App}>
       <Cockpit showPersons={this.showPersonsHandler} persons={this.state.persons} />
+=======
+      <div className={cssClasses.App}>
+      <h1>This is a react app</h1>
+      <button style={style} onClick={this.showPersonsHandler}>Toggle Name</button>
+>>>>>>> 68a0f93658f0fd1b86a54b22ae71d827408a11f5:src/App.js
       {persons}
       </div>
 
